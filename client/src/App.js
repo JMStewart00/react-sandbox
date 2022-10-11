@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App(props) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0); // [ value, setter ] = useState(defaultValue)
     const [characters, setCharacters] = useState([]);
-    console.log(characters);
 
+    // useEffect is a life cycle hook
     useEffect(() => {
         axios.get('https://rickandmortyapi.com/api/character')
             .then((resp) => setCharacters(resp.data.results))
-    }, [])
+    }, []) // empty dependency array only runs on initial render of component.
 
     function handleAlertClick() {
         setTimeout(() => {
@@ -19,6 +19,7 @@ function App(props) {
 
     return (
         <div>
+            {/* We can render variables in the {} */}
             <p>You clicked {count} times</p>
             <button onClick={() => setCount(count + 1)}>
                 Click me
